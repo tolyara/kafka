@@ -9,8 +9,14 @@ public class Address {
 	private Long flatNumber; 
 	
 	public Address(String country, String city, String street, Long homeNumber, Long flatNumber) {
-		// TODO Auto-generated constructor stub
+		super();
+		this.country = country;
+		this.city = city;
+		this.street = street;
+		this.homeNumber = homeNumber;
+		this.flatNumber = flatNumber;
 	}
+
 	public String getCountry() {
 		return country;
 	}

@@ -1,6 +1,6 @@
 package com.example.kafka.dto;
 
-public class UserDTO {
+public class UserDto {
 	
     private Long age;
     private String name;

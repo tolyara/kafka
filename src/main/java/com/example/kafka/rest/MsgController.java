@@ -6,33 +6,34 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.kafka.dto.Address;
+import com.example.kafka.dto.UserDto;
 
 @RestController
 @RequestMapping("msg")
 public class MsgController {
 
 	@Autowired
-	private KafkaTemplate<Long, String> kafkaTemplate;
+	private KafkaTemplate<Long, UserDto> kafkaTemplate;
 
 //	@PostMapping
-//	public void sendMessage(Long msgId, String msg) {
+//	public void sendMessage(@RequestParam("msgId") Long msgId, @RequestParam("msg") String msg) {
 //		ListenableFuture<SendResult<Long, String>> future = kafkaTemplate.send("msg", msgId, msg);
 //	    future.addCallback(System.out::println, System.err::println);
 //	    kafkaTemplate.flush();
 //	}
 	
 	@PostMapping
-	public void sendMessage(@RequestParam("msgId") Long msgId, @RequestParam("msg") String msg) {
-//	public void sendMessage(@RequestBody UserDTO user) {
-		
-//		user.setAddress(new Address("RUS", "Msk", "Lenina", 1L, 1L));
-//		msg = "test";
-		ListenableFuture<SendResult<Long, String>> future = kafkaTemplate.send("msg", msgId, msg);
+	public void sendMessage(@RequestParam("msgId") Long msgId, @RequestBody UserDto user) {
+		user.setAddress(new Address("UA", "KYIV", "Lenina", 1L, 1L));
+		ListenableFuture<SendResult<Long, UserDto>> future = kafkaTemplate.send("msg", msgId, user);
 	    future.addCallback(System.out::println, System.err::println);
-	    kafkaTemplate.flush();
+	    kafkaTemplate.flush(); 
 	}
 
 	@GetMapping
