@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/log4j.properties
+/src/main/java/com/example/kafka/test/LoggerEx.java

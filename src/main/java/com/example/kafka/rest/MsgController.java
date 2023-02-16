@@ -29,6 +29,7 @@ public class MsgController {
 //	}
 	
 	@PostMapping
+//	@RequestMapping(method = RequestMethod.PATCH)
 	public void sendMessage(@RequestParam("msgId") Long msgId, @RequestBody UserDto user) {
 		user.setAddress(new Address("UA", "KYIV", "Lenina", 1L, 1L));
 		ListenableFuture<SendResult<Long, UserDto>> future = kafkaTemplate.send("msg", msgId, user);
