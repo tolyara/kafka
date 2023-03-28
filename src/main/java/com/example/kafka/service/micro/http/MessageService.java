@@ -1,7 +1,9 @@
 package com.example.kafka.service.micro.http;
 
+import com.example.kafka.dto.message.MessageResponse;
+
 public interface MessageService {
 
-    Object sendMessage(String message);
+    MessageResponse sendMessage(String message);
 
 }

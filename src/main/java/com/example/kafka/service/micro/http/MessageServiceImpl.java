@@ -1,5 +1,6 @@
 package com.example.kafka.service.micro.http;
 
+import com.example.kafka.dto.message.MessageResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,10 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Object sendMessage(String message) {
+    public MessageResponse sendMessage(String message) {
         logger.info("Saving message : {}", message);
-        Object response = restTemplate.getForObject("http://localhost:8080/messages/{message}", Object.class, message);
+        MessageResponse response = restTemplate.getForObject(protocol + "://" + host + ":" + port + "/messages/{message}", MessageResponse.class, message);
+//        Object response = restTemplate.getForObject("http://localhost:8080/messages/{message}", Object.class, message);
         return response;
     }
 
