@@ -22,7 +22,8 @@ public class MessageController {
 
 	@PostMapping
 	public MessageResponse sendMessage(@RequestBody MessageDto messageDto) {
-		return messageService.sendMessage(messageDto.getMessage());
+//		return messageService.sendMessage(messageDto.getMessage());
+		return messageService.sendMessage(messageDto);
 	}
 
 }
