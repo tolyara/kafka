@@ -12,13 +12,13 @@ public class MessageServiceImpl implements MessageService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Value("${m}")
+    @Value("${base-server.host}")
     private String host;
 
-    @Value("${m}")
+    @Value("${base-server.port}")
     private String port;
 
-    @Value("${m}")
+    @Value("${base-server.protocol}")
     private String protocol;
 
     private final RestTemplate restTemplate;
